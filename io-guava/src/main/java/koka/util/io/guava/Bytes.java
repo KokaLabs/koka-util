@@ -153,7 +153,7 @@ public abstract class Bytes implements InputSupplier<InputStream> {
   }
 
   @Beta
-  final Bytes cacheToDisk() throws IOException {
+  public final Bytes cacheToDisk() throws IOException {
     FileBackedOutputStream cache = new FileBackedOutputStream(1_000_000);
     ByteStreams.copy(this, cache);
     return Bytes.of(cache.getSupplier());
