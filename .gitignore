@@ -1,6 +1,8 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+target/
+.settings/
+.classpath
+.project
+.pmd
+.pmdruleset.xml
+.DS_Store
+target-eclipse/
