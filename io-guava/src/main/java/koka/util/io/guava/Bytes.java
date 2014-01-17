@@ -14,6 +14,7 @@ import com.google.common.annotations.Beta;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closer;
+import com.google.common.io.FileBackedOutputStream;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.OutputSupplier;
 
@@ -151,6 +152,13 @@ public abstract class Bytes implements InputSupplier<InputStream> {
     ByteStreams.copy(this, to);
   }
 
+  @Beta
+  final Bytes cacheToDisk() throws IOException {
+    FileBackedOutputStream cache = new FileBackedOutputStream(1_000_000);
+    ByteStreams.copy(this, cache);
+    return Bytes.of(cache.getSupplier());
+  }
+  
   private Bytes() {}
 
   public interface Unsized {
