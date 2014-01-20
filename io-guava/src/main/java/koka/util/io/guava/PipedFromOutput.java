@@ -18,8 +18,10 @@ import com.google.common.io.InputSupplier;
  * {@link #getInput()}. <br>
  * Note that the writing process occurs on a separate thread.
  * 
- * @since 0.4
+ * @deprecated see {@link PipedByteSource}
+ * @since 0.1
  */
+@Deprecated
 public abstract class PipedFromOutput implements InputSupplier<InputStream> {
   @VisibleForTesting
   static final int MAX_BUFFER_SIZE = Piped.MAX_BUFFER_SIZE;
