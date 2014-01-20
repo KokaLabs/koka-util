@@ -12,7 +12,11 @@ import com.google.common.io.InputSupplier;
 
 /**
  * Converts a {@link File} to various types of {@link InputSupplier}.
+ * 
+ * @deprecated To be removed once Guava removes {@link InputSupplier} in version
+ *             18.0
  */
+@Deprecated
 public final class FileInputSuppliers {
   private FileInputSuppliers() {}
 
