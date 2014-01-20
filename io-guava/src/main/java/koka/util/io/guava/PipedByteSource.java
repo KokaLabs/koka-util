@@ -53,7 +53,7 @@ public abstract class PipedByteSource extends ByteSource {
   }
 
   /**
-   * Anything written here can be read back via {@link #getInput()}.
+   * Anything written here can be read back via {@link #openStream()}.
    */
   protected abstract void passThrough(OutputStream to) throws IOException;
 
