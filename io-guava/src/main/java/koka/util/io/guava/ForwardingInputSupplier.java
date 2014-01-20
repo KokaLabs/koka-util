@@ -5,8 +5,11 @@ import java.io.IOException;
 import com.google.common.io.InputSupplier;
 
 /**
- * @since 0.7
+ * @deprecated To be removed once Guava removes {@link InputSupplier} in version
+ *             18.0
+ * @since 0.1
  */
+@Deprecated
 public abstract class ForwardingInputSupplier<T> implements InputSupplier<T> {
   protected abstract InputSupplier<T> delegate();
 
