@@ -8,6 +8,11 @@ import java.util.Properties;
 
 import com.google.common.io.InputSupplier;
 
+/**
+ * @deprecated To be removed once Guava removes {@link InputSupplier} in version
+ *             18.0
+ */
+@Deprecated
 public class PropertiesSupplier implements InputSupplier<Properties> {
   private final InputSupplier<? extends InputStream> linesFormat;
 
