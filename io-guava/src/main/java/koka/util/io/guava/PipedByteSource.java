@@ -18,7 +18,7 @@ import com.google.common.io.ByteSource;
  * {@link #openStream()}. <br>
  * Note that the writing process occurs on a separate thread.
  * 
- * @since 0.4
+ * @since 0.1
  */
 public abstract class PipedByteSource extends ByteSource {
   @VisibleForTesting
