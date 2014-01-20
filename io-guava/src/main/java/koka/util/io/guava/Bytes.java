@@ -23,18 +23,13 @@ import com.google.common.io.FileBackedOutputStream;
 public abstract class Bytes extends ByteSource {
   private static final long SEED = 8L;
 
-  public static Unsized random() {
+  public static Bytes random() {
     return random(SEED);
   }
 
-  public static Unsized random(final long seed) {
-    class EndlessRandom extends Bytes implements Unsized {
+  public static Bytes random(final long seed) {
+    class EndlessRandom extends Bytes {
       private static final int MAX_BYTE = 0xFF;
-
-      @Override
-      public Bytes endless() {
-        return this;
-      }
 
       @Override
       public InputStream openStream() {
@@ -72,10 +67,6 @@ public abstract class Bytes extends ByteSource {
         return raw.openStream();
       }
     };
-  }
-
-  public final Bytes limitedTo(long length) {
-    return of(this.slice(0, length));
   }
 
   // Uncomment for optimization if commons-io is ever added
@@ -141,10 +132,4 @@ public abstract class Bytes extends ByteSource {
   }
 
   private Bytes() {}
-
-  public interface Unsized {
-    Bytes limitedTo(long length);
-
-    Bytes endless();
-  }
 }
