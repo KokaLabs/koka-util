@@ -79,61 +79,56 @@ public abstract class Bytes extends ByteSource {
   }
 
   // Uncomment for optimization if commons-io is ever added
-//  /**
-//   * faster implementation
-//   */
-//  private Bytes inBase64() {
-//    final Bytes curr = this;
-//    return of(new InputSupplier<InputStream>() {
-//      @Override
-//      public InputStream getInput() throws IOException {
-//        boolean doEncode = true;
-//        return new Base64InputStream(curr.getInput(), doEncode);
-//      }
-//    });
-//  }
+  // /**
+  // * faster implementation
+  // */
+  // private Bytes inBase64() {
+  // final Bytes curr = this;
+  // return of(new InputSupplier<InputStream>() {
+  // @Override
+  // public InputStream getInput() throws IOException {
+  // boolean doEncode = true;
+  // return new Base64InputStream(curr.getInput(), doEncode);
+  // }
+  // });
+  // }
 
   public final Bytes in(final BaseEncoding as) {
-//    if (as.equals(BaseEncoding.base64())) {
-//      return this.inBase64();
-//    }
+    // if (as.equals(BaseEncoding.base64())) {
+    // return this.inBase64();
+    // }
     final Bytes curr = this;
-    return of(new ByteSource() {
+    return of(new PipedByteSource() {
       @Override
-      public InputStream openStream() throws IOException {
-        return new PipedFromOutput() {
+      protected void passThrough(OutputStream to) throws IOException {
+        OutputStream ignored = new FilterOutputStream(to) {
           @Override
-          protected void write(OutputStream to) throws IOException {
-            OutputStream ignored = new FilterOutputStream(to) {
-              @Override
-              public void write(byte[] b) throws IOException {
-                out.write(b);
-              }
-
-              @Override
-              public void write(byte[] b, int off, int len) throws IOException {
-                out.write(b, off, len);
-              }
-
-              @Override
-              public void write(int b) throws IOException {
-                out.write(b);
-              }
-
-              @Override
-              public void close() {}
-            };
-            OutputStreamWriter out = new OutputStreamWriter(ignored, UTF_8);
-            Closer c = Closer.create();
-            try {
-              curr.copyTo(c.register(as.encodingStream(out)));
-            } catch (Throwable e) {
-              throw c.rethrow(e);
-            } finally {
-              c.close();
-            }
+          public void write(byte[] b) throws IOException {
+            out.write(b);
           }
-        }.getInput();
+
+          @Override
+          public void write(byte[] b, int off, int len) throws IOException {
+            out.write(b, off, len);
+          }
+
+          @Override
+          public void write(int b) throws IOException {
+            out.write(b);
+          }
+
+          @Override
+          public void close() {}
+        };
+        OutputStreamWriter out = new OutputStreamWriter(ignored, UTF_8);
+        Closer c = Closer.create();
+        try {
+          curr.copyTo(c.register(as.encodingStream(out)));
+        } catch (Throwable e) {
+          throw c.rethrow(e);
+        } finally {
+          c.close();
+        }
       }
     });
   }
@@ -144,7 +139,7 @@ public abstract class Bytes extends ByteSource {
     this.copyTo(cache);
     return Bytes.of(cache.asByteSource());
   }
-  
+
   private Bytes() {}
 
   public interface Unsized {
