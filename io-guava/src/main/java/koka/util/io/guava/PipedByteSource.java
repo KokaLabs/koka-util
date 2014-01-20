@@ -15,7 +15,7 @@ import com.google.common.io.ByteSource;
  * A mechanism for converting an OutputStream to an InputStream.
  * <p>
  * Bytes written in {@link #passThrough(OutputStream)} are accessible via
- * {@link #getInput()}. <br>
+ * {@link #openStream()}. <br>
  * Note that the writing process occurs on a separate thread.
  * 
  * @since 0.4
