@@ -14,7 +14,7 @@ import com.google.common.io.ByteSource;
 /**
  * A mechanism for converting an OutputStream to an InputStream.
  * <p>
- * Bytes written in {@link #write(OutputStream)} are accessible via
+ * Bytes written in {@link #passThrough(OutputStream)} are accessible via
  * {@link #getInput()}. <br>
  * Note that the writing process occurs on a separate thread.
  * 
@@ -47,7 +47,7 @@ public abstract class PipedByteSource extends ByteSource {
     return new ProducedData() {
       @Override
       public final void sendTo(OutputStream sink) throws IOException {
-        write(sink);
+        passThrough(sink);
       }
     };
   }
@@ -55,7 +55,7 @@ public abstract class PipedByteSource extends ByteSource {
   /**
    * Anything written here can be read back via {@link #getInput()}.
    */
-  protected abstract void write(OutputStream to) throws IOException;
+  protected abstract void passThrough(OutputStream to) throws IOException;
 
   /**
    * Executes writing process on separate thread.
@@ -72,8 +72,8 @@ public abstract class PipedByteSource extends ByteSource {
     final PipedByteSource alreadyImpl = this;
     return new PipedByteSource(forWritingProcess) {
       @Override
-      protected void write(OutputStream to) throws IOException {
-        alreadyImpl.write(to);
+      protected void passThrough(OutputStream to) throws IOException {
+        alreadyImpl.passThrough(to);
       }
     };
   }
