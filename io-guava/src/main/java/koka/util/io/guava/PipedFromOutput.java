@@ -18,7 +18,8 @@ import com.google.common.io.InputSupplier;
  * {@link #getInput()}. <br>
  * Note that the writing process occurs on a separate thread.
  * 
- * @deprecated see {@link PipedByteSource}
+ * @deprecated see {@link PipedByteSource}. To be removed once Guava removes
+ *             {@link InputSupplier} in version 18.0
  * @since 0.1
  */
 @Deprecated
