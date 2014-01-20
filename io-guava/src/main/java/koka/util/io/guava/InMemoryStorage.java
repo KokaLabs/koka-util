@@ -16,7 +16,7 @@ import com.google.common.io.InputSupplier;
  * clear the buffer.
  * 
  * @deprecated Replaced by {@link InMemoryBytes} using {@link ByteSource} and
- *             {@link ByteSink}. To be To be removed once Guava removes
+ *             {@link ByteSink}. To be removed once Guava removes
  *             {@link InputSupplier} in version 18.0
  */
 @Deprecated
