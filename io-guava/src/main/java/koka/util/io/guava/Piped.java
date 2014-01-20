@@ -13,18 +13,18 @@ import koka.util.io.OutputStreams;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
+import com.google.common.io.ByteSource;
 import com.google.common.io.Closer;
-import com.google.common.io.InputSupplier;
 
 /**
  * A mechanism for converting an OutputStream to an InputStream.
  * <p>
- * Allows reading {@link ProducedData} via {@link #getInput()}. <br>
+ * Allows reading {@link ProducedData} via {@link #openStream()}. <br>
  * Note that the produced data is performed on a separate thread.
  * 
- * @since 0.5
+ * @since 0.1
  */
-public class Piped implements InputSupplier<InputStream> {
+public class Piped extends ByteSource {
   @VisibleForTesting
   static final int MAX_BUFFER_SIZE = 0x1000;
 
@@ -43,7 +43,7 @@ public class Piped implements InputSupplier<InputStream> {
   }
 
   @Override
-  public final InputStream getInput() throws IOException {
+  public final InputStream openStream() throws IOException {
     PipedInputStream in = new PipedInputStream(MAX_BUFFER_SIZE);
     OutputStream out = new EagerAlertingPipedOutputStream(in);
 
