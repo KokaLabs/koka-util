@@ -16,7 +16,7 @@
 
   <repositories>
     <repository>
-      <id>github</id>
+      <id>kokalabs-mvn-repo</id>
       <url>https://raw.github.com/KokaLabs/mvn-repo/master/maven/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
