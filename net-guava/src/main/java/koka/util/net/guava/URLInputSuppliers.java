@@ -14,8 +14,6 @@ import com.google.common.io.Resources;
 
 /**
  * Converts a {@link URL} to various types of {@link InputSupplier}.
- * 
- * @author Booz Allen Hamilton
  */
 public final class URLInputSuppliers {
   private URLInputSuppliers() {}
