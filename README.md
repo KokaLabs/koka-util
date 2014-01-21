@@ -1,4 +1,7 @@
 koka-util
 =========
 
-utility classes for java
+Utility classes for java
+
+git clone git://github.com/KokaLabs/koka-util.git
+mvn clean install
