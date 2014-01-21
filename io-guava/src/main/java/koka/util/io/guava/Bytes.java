@@ -68,6 +68,11 @@ public abstract class Bytes extends ByteSource {
       }
     };
   }
+  
+  @Override
+  public Bytes slice(long offset, long length) {
+    return of(super.slice(offset, length));
+  }
 
   // Uncomment for optimization if commons-io is ever added
   // /**
