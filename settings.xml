@@ -15,11 +15,10 @@
         </repository>
 
         <repository>
-          <id>kokalabs-mvn-repo</id>
-          <url>https://raw.github.com/KokaLabs/mvn-repo/master/maven/snapshots/</url>
+          <id>kokalabs-bintray</id>
+          <url>https://dl.bintray.com/kokalabs/maven/</url>
           <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
+            <enabled>false</enabled>
           </snapshots>
         </repository>
       </repositories>

@@ -6,7 +6,7 @@
   <parent>
     <groupId>kokalabs</groupId>
     <artifactId>koka-corporate</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.1-7</version>
   </parent>
 
   <groupId>kokalabs.util</groupId>
