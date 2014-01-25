@@ -6,22 +6,20 @@ import javax.xml.transform.Source;
 import javax.xml.transform.URIResolver;
 
 import koka.util.net.URLs;
-import koka.util.net.resolver.URLResolver;
 
 import com.google.common.annotations.VisibleForTesting;
 
 public class ProperlyHandleResourcesInArchives implements URIResolver {
-  private final URLResolver toUrl;
-
-  public ProperlyHandleResourcesInArchives(URLResolver toUrl) {
-    this.toUrl = toUrl;
-  }
-
   @Override
   public Source resolve(String href, String base) {
-    return toSource(toUrl.resolve(base, href));
+    return toSource(resolveUrl(base, href));
   }
 
+  private URL resolveUrl(String base, String href) {
+    URL baseUrl = URLs.create(base);
+    return href.isEmpty() ? baseUrl : URLs.create(baseUrl, href);
+  }
+  
   @VisibleForTesting
   Source toSource(URL location) {
     return URLs.asStreamSource(location);
