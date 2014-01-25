@@ -24,7 +24,6 @@
     <module>parent</module>
     <module>xml</module>
     <module>net-guava</module>
-    <module>xml-resolver-xerces</module>
     <module>xml-sax</module>
     <module>xml-stax</module>
     <module>xml-transform</module>

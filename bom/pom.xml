@@ -83,11 +83,6 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>koka-util-xml-resolver-xerces</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
         <artifactId>koka-util-xml-sax</artifactId>
         <version>${project.version}</version>
       </dependency>
