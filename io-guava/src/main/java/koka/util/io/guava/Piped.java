@@ -92,14 +92,14 @@ public class Piped extends ByteSource {
       @Override
       public Void call() throws IOException {
         try {
-          return actual(to);
+          return performWrite();
         } catch (NoClassDefFoundError oldVersionOfGuava) {
           to.close();
           throw oldVersionOfGuava;
         }
       }
 
-      private Void actual(final OutputStream to) throws IOException {
+      private Void performWrite() throws IOException {
         Closer c = Closer.create();
         try {
           c.register(to);
