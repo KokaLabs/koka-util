@@ -26,5 +26,13 @@
   </profiles>
   <activeProfiles>
     <activeProfile>kokalabs</activeProfile>
-  </activeProfiles>
+	</activeProfiles>
+
+	<servers>
+		<server>
+			<id>bintray</id>
+			<username>${env.BINTRAY_USERNAME}</username>
+			<password>${env.BINTRAY_PASSWORD}</password>
+		</server>
+	</servers>
 </settings>
