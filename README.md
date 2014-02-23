@@ -22,6 +22,7 @@ Adds the Bill of Materials (BoM) to your dependencyManagement
       <groupId>kokalabs.util</groupId>
       <artifactId>koka-util-bom</artifactId>
       <version>0.1-6</version>
+      <scope>import</scope>
     </dependency>
     
 Finally, add the dependency that you need.  For example, for IO
@@ -29,7 +30,6 @@ Finally, add the dependency that you need.  For example, for IO
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>koka-util-io</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
 Install
