@@ -14,6 +14,10 @@
   <version>0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+	<properties>
+		<real.project.version>0.1</real.project.version>
+	</properties>
+	
   <modules>
     <module>bom</module>
     <module>common</module>
