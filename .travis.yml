@@ -1,0 +1,22 @@
+language: java
+install: true
+script:
+  - ./mvnw -s settings.xml -Pprepare-release -Drelease.version.postfix=-${TRAVIS_BUILD_NUMBER}
+  - ./mvnw -s settings.xml -Prelease
+  - eval $(echo 'MAVEN_VERSION=${project.version}' | ./mvnw -s settings.xml help:evaluate | grep ^MAVEN_VERSION=)
+  - git config user.name 'Travis CI'
+  - git config user.email 'builds@travis-ci.com'
+  - git commit -am "Release v${MAVEN_VERSION}"
+  - git tag v${MAVEN_VERSION}
+  - git push https://${GITHUB_TOKEN}@github.com/KokaLabs/koka-util.git v${MAVEN_VERSION} 2>&1 | sed "s/${GITHUB_TOKEN}/[secure]/g"
+env:
+  global:
+    # GITHUB_TOKEN
+    - secure: BxiFKesX7VseprUE2AsRM/Zf/jc65CWrYieDe6oo41P2sCmGtJjbYIgu2aIwHwjJGUZ3/Kg17SbPkEo71GB9k0opKRA6etc1dm+EVteABE6QlbOE6ME19zb8zejZO/650HoG0bnJcsMcDkoGEy+7NERDSmO7/oweCx+Q56pPt+U=
+    # BINTRAY_USERNAME
+    - secure: KEOAaVCBvaEEzvBvogMcKNlFBD7mcW0WszxHkvT6uhysa/yRMTd7XMnY3xELSnaceNawaOEBBZrtJF4jVY7tUEkCMGdUzm+x7LA/p5SH2daRP+ktODuq+df2nRHPho+Q5143FTR3DdivTYN6uknd36Di0+bjJq5LHJH0985fUIc=
+    # BINTRAY_PASSWORD
+    - secure: VjdMSJvArujgW6nyzis5kVR+mIlCVa1cWrk1DaR/qA1G26rYbi3IbeBEUabLuvTmWH+oJKzR9/BZHA3xP4Yko7XSRa2ElCcbEB1prq+rkIPjeI7f2wqZtPH7RLFpedPE77RXkm0YBC8mX+Wkx80LzDFzM6eWB4+ULiOSpCTJH6o=
+branches:
+  only:
+    - master
