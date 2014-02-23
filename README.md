@@ -28,7 +28,7 @@ Adds the Bill of Materials (BoM) to your dependencyManagement
 Finally, add the dependency that you need.  For example, for IO
 
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>kokalabs.util</groupId>
       <artifactId>koka-util-io</artifactId>
     </dependency>
 
