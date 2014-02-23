@@ -7,8 +7,6 @@ import org.xml.sax.SAXException;
 
 /**
  * Forwards all calls to a delegate {@link ContentHandler}.
- * 
- * @author Booz Allen Hamilton
  */
 public abstract class ForwardingContentHandler implements ContentHandler {
   protected abstract ContentHandler delegate();

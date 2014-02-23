@@ -18,8 +18,6 @@ import org.xml.sax.XMLReader;
 /**
  * Zero or more XSLs that should be efficiently applied in order. <br>
  * The output of a given XSL is streamed as input to the next XSL.
- * 
- * @author Booz Allen Hamilton
  */
 public class TemplatesChain {
   private final SAXTransformerFactory sax;
