@@ -38,7 +38,7 @@ public abstract class Bytes extends ByteSource {
 
           @Override
           public int read(byte[] b, int off, int len) {
-            byte[] tmp = new byte[len - off];
+            byte[] tmp = new byte[len];
             byteGenerator.nextBytes(tmp);
             System.arraycopy(tmp, 0, b, off, len);
             return tmp.length;
